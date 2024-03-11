@@ -12,6 +12,9 @@ public class HelloWorld {
             var name = ctx.queryParamAsClass("name", String.class).getOrDefault("World");
             ctx.result(String.format("Hello, %s!", name));
         });
+        app.get("/posts/{id}", ctx -> {
+            ctx.result(ctx.pathParam("id"));
+        });
         app.start(7070);
     }
 }

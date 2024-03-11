@@ -8,6 +8,10 @@ public class HelloWorld {
             config.plugins.enableDevLogging();
         });
         app.get("/", ctx -> ctx.result("Hello World!"));
+        app.get("/hello", ctx -> {
+            var name = ctx.queryParamAsClass("name", String.class).getOrDefault("World");
+            ctx.result(String.format("Hello, %s!", name));
+        });
         app.start(7070);
     }
 }
